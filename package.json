@@ -1,5 +1,5 @@
 {
-    "name": "timebandit",
+    "name": "@jorenrothman/timebandit",
     "version": "0.0.2",
     "description": "Stealing your time back, one command at a time!",
     "main": "dist/index.js",
@@ -18,7 +18,6 @@
     "author": "Joren Rothman",
     "license": "MIT",
     "dependencies": {
-        "better-sqlite3": "^8.3.0",
         "commander": "^10.0.1",
         "date-fns": "^2.29.3",
         "sqlite3": "^5.1.6",
@@ -35,6 +34,7 @@
         "timebandit",
         "cli"
     ],
+    "private": false,
     "homepage": "https://github.com/JorenRothman/timebandit#readme",
     "bugs": {
         "url": "https://github.com/JorenRothman/timebandit/issues"
