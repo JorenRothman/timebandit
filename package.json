@@ -1,0 +1,30 @@
+{
+    "name": "timebandit",
+    "version": "0.0.1",
+    "description": "Stealing your time back, one command at a time!",
+    "main": "dist/index.js",
+    "bin": {
+        "timebandit": "dist/index.js"
+    },
+    "scripts": {
+        "tsc": "tsc",
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Joren Rothman",
+    "license": "MIT",
+    "dependencies": {
+        "better-sqlite3": "^8.3.0",
+        "commander": "^10.0.1",
+        "date-fns": "^2.29.3",
+        "sqlite3": "^5.1.6",
+        "typescript": "^5.0.4"
+    },
+    "devDependencies": {
+        "@types/node": "^18.15.13"
+    },
+    "repository": {
+        "type": "git"
+    }
+}
