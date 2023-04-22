@@ -1,13 +1,16 @@
 {
     "name": "timebandit",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Stealing your time back, one command at a time!",
     "main": "dist/index.js",
     "bin": {
         "timebandit": "dist/index.js"
     },
+    "files": [
+        "dist"
+    ],
     "scripts": {
-        "tsc": "tsc ",
+        "tsc": "tsc",
         "build": "tsc",
         "start": "node dist/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,7 +27,20 @@
     "devDependencies": {
         "@types/node": "^18.15.13"
     },
+    "keywords": [
+        "time",
+        "time tracking",
+        "time management",
+        "time bandit",
+        "timebandit",
+        "cli"
+    ],
+    "homepage": "https://github.com/JorenRothman/timebandit#readme",
+    "bugs": {
+        "url": "https://github.com/JorenRothman/timebandit/issues"
+    },
     "repository": {
-        "type": "git"
+        "type": "git",
+        "url": "https://github.com/JorenRothman/timebandit.git"
     }
 }
