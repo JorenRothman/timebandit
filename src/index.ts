@@ -7,6 +7,7 @@ import listEntries from './commands/list';
 import exportEntries from './commands/export';
 import trackTime from './commands/track';
 import { CONFIG_DIR } from './constants/paths';
+import { VERSION } from './utils/package-info';
 
 const program = new Command();
 
@@ -15,8 +16,8 @@ if (!fs.existsSync(CONFIG_DIR)) {
 }
 
 program
-    .name('Time Bandit')
-    .version('0.0.1')
+    .name('timebandit')
+    .version(VERSION)
     .description(
         'A time tracking CLI tool, “Stealing” your time back, one command at a time!'
     );
