@@ -1,17 +1,13 @@
 import fs from 'fs';
-import { CONFIG_DIR } from '../constants/paths';
-import sqlite3 from 'sqlite3';
 import path from 'path';
 import os from 'os';
-import { DB_NAME } from '../constants/database';
-import { Entry } from '../types/database';
+import { Entry } from '@/types/database';
 import { format } from 'date-fns';
+import { DB } from '@/constants/database';
 
 function exportEntries(pathName: string) {
-    const db = new sqlite3.Database(path.resolve(CONFIG_DIR, DB_NAME));
-
-    db.serialize(() => {
-        db.all('SELECT * FROM times', (err, rows: Entry[]) => {
+    DB.serialize(() => {
+        DB.all('SELECT * FROM times', (err, rows: Entry[]) => {
             if (err) {
                 console.error(err);
                 process.exit(1);
