@@ -13,7 +13,7 @@ npm install -g @jorenrothman/timebandit
 ## Usage
 To start using TimeBandit, simply open your terminal and type timebandit followed by a command. Here are some of the most common commands you can use:
 
-`timebandit track <project> [description]`
+### `timebandit track <project> [description]`
 
 This command starts a new time-tracking session for the specified project. For example, to start tracking time for a project called "Doomsday Device", you would type:
 
@@ -26,11 +26,11 @@ adding a description with the text "Peace of mind" can be done in the following 
 timebandit track "Doomsday Device" "Peace of mind"
 ```
 
-`timebandit list`
+### `timebandit list`
 
 This command will list out all your entries
 
-`timebandit export <path>`
+### `timebandit export <path>`
 
 This command will export all your entries as a CSV file to a given path. The filename uses the following format `yyyyMMdd`, to export your entries to the downloads folder, you would type the following:
 ```bash
@@ -39,4 +39,12 @@ timebandit export ~/Downloads
 or if you want to specify a filename, you would type the following:
 ```bash
 timebandit export ~/Downloads/my-export.csv
+```
 
+### `timebandit reset` 
+
+This command wipes the internal database, to wipe the internal database, you would type the following:
+
+```bash
+timebandit reset
+```
