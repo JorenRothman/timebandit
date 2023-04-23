@@ -27,13 +27,25 @@ function exportEntries(pathName: string) {
 
             const csvWithHeaders = `${headers}${os.EOL}${csv}`;
 
-            const filePath = path.resolve(pathName, 'export.csv');
+            const filePath = getFilePath(pathName);
 
             fs.writeFileSync(filePath, csvWithHeaders, 'utf8');
 
             console.log(`Exported entries to ${filePath}`);
         });
     });
+}
+
+function pathContainsFilename(pathName: string) {
+    return pathName.endsWith('.csv');
+}
+
+function getFilePath(pathName: string) {
+    if (pathContainsFilename(pathName)) {
+        return pathName;
+    }
+
+    return path.resolve(pathName, 'export.csv');
 }
 
 export default exportEntries;

@@ -15,7 +15,7 @@ To start using TimeBandit, simply open your terminal and type timebandit followe
 
 `timebandit track <project> [description]`
 
-This command starts a new time tracking session for the specified project. For example, to start tracking time for a project called "Doomsday Device", you would type:
+This command starts a new time-tracking session for the specified project. For example, to start tracking time for a project called "Doomsday Device", you would type:
 
 ```bash
 timebandit track "Doomsday Device"
@@ -32,8 +32,11 @@ This command will list out all your entries
 
 `timebandit export <path>`
 
-This command will export all your entries as a CSV file to a given path, to export your entries to the downloads folder, you would type the following:
+This command will export all your entries as a CSV file called "export.csv" to a given path, to export your entries to the downloads folder, you would type the following:
 ```bash
 timebandit export ~/Downloads
 ```
+or if you want to specify a filename, you would type the following:
+```bash
+timebandit export ~/Downloads/my-export.csv
 
