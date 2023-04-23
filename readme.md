@@ -32,7 +32,7 @@ This command will list out all your entries
 
 `timebandit export <path>`
 
-This command will export all your entries as a CSV file called "export.csv" to a given path, to export your entries to the downloads folder, you would type the following:
+This command will export all your entries as a CSV file to a given path. The filename uses the following format `yyyyMMdd`, to export your entries to the downloads folder, you would type the following:
 ```bash
 timebandit export ~/Downloads
 ```

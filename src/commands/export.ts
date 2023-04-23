@@ -5,6 +5,7 @@ import path from 'path';
 import os from 'os';
 import { DB_NAME } from '../constants/database';
 import { Entry } from '../types/database';
+import { format } from 'date-fns';
 
 function exportEntries(pathName: string) {
     const db = new sqlite3.Database(path.resolve(CONFIG_DIR, DB_NAME));
@@ -45,7 +46,15 @@ function getFilePath(pathName: string) {
         return pathName;
     }
 
-    return path.resolve(pathName, 'export.csv');
+    return path.resolve(pathName, getGeneratedFileName());
+}
+
+function getGeneratedFileName() {
+    const date = new Date();
+
+    const fileName = format(date, 'yyyyMMdd');
+
+    return `${fileName}.csv`;
 }
 
 export default exportEntries;
