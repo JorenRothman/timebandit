@@ -1,13 +1,8 @@
 import { differenceInMilliseconds, format } from 'date-fns';
-import sqlite3 from 'sqlite3';
-import path from 'path';
-import { CONFIG_DIR } from '../constants/paths';
-import { keypress } from '../utils/interaction';
-import { DB_NAME } from '../constants/database';
+import { keypress } from '@/utils/interaction';
+import { DB } from '@/constants/database';
 
 async function trackTime(project: string, description: string) {
-    const db = new sqlite3.Database(path.resolve(CONFIG_DIR, DB_NAME));
-
     console.log(
         `Starting a new time entry for ${project} with description ${description}`
     );
@@ -33,8 +28,8 @@ async function trackTime(project: string, description: string) {
         'HH:mm:ss'
     );
 
-    db.serialize(() => {
-        db.prepare(
+    DB.serialize(() => {
+        DB.prepare(
             `CREATE TABLE IF NOT EXISTS times (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     project TEXT NOT NULL,
@@ -45,7 +40,7 @@ async function trackTime(project: string, description: string) {
                 )`
         ).run();
 
-        db.prepare('INSERT INTO times VALUES (?, ?, ?, ?, ?, ?)')
+        DB.prepare('INSERT INTO times VALUES (?, ?, ?, ?, ?, ?)')
             .run(
                 null,
                 project,

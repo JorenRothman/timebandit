@@ -11,7 +11,7 @@
     ],
     "scripts": {
         "tsc": "tsc",
-        "build": "tsc",
+        "build": "tsup src/index.ts",
         "start": "node dist/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -23,8 +23,9 @@
         "sqlite3": "^5.1.6"
     },
     "devDependencies": {
-        "typescript": "^5.0.4",
-        "@types/node": "^18.15.13"
+        "@types/node": "^18.15.13",
+        "tsup": "^6.7.0",
+        "typescript": "^5.0.4"
     },
     "keywords": [
         "time",
