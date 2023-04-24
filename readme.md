@@ -48,3 +48,31 @@ This command wipes the internal database, to wipe the internal database, you wou
 ```bash
 timebandit reset
 ```
+
+### `timebandit backup [path]`
+
+This command backups the current data in your database, by default it will use the backups folder in the default .timebandit folder.
+To backup the database, you would type the following:
+
+```bash
+timebandit backup
+```
+
+If you want to export it to a different path/name, you would type the following:
+
+```bash
+timebandit backup ./my-folder
+```
+or
+```bash
+timebandit backup./my-folder/my-file.json
+```
+*Just make sure to include the .json extension*
+
+### `timebandit import <path>`
+
+This command let you import previously created backup files, simply specify the complete path like shown below
+
+```bash
+timebandit import ~/.timebandit/backups/filename.json
+```
