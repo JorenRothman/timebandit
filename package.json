@@ -1,6 +1,6 @@
 {
     "name": "@jorenrothman/timebandit",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Stealing your time back, one command at a time!",
     "main": "dist/index.js",
     "bin": {
@@ -19,8 +19,7 @@
     "license": "MIT",
     "dependencies": {
         "commander": "^10.0.1",
-        "date-fns": "^2.29.3",
-        "sqlite3": "^5.1.6"
+        "date-fns": "^2.29.3"
     },
     "devDependencies": {
         "@types/node": "^18.15.13",

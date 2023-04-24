@@ -7,8 +7,11 @@ import listEntries from '@/commands/list';
 import exportEntries from '@/commands/export';
 import trackTime from '@/commands/track';
 import { CONFIG_DIR } from '@/constants/paths';
-import { VERSION } from '@/utils/package-info';
+import { VERSION } from '@/constants/package-info';
 import reset from '@/commands/reset';
+import { DB } from './constants/database';
+
+DB.create();
 
 const program = new Command();
 
