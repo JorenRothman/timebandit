@@ -7,6 +7,8 @@ import fs from 'fs/promises';
 import { DB_NAME } from '@/constants/database';
 import { FileStructure, Item } from '@/types/database';
 import { CONFIG_DIR } from '@/constants/paths';
+import { format } from 'date-fns';
+import { pathContainsFilename } from '@/utils/file';
 
 class FileSystem {
     FULL_PATH = CONFIG_DIR + '/' + DB_NAME;
@@ -14,6 +16,15 @@ class FileSystem {
     async exists(): Promise<boolean> {
         try {
             await fs.access(this.FULL_PATH);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async backupExists(): Promise<boolean> {
+        try {
+            await fs.access(CONFIG_DIR + '/backups');
             return true;
         } catch (error) {
             return false;
@@ -51,6 +62,25 @@ class FileSystem {
         const data = JSON.stringify(this.generateFileStructure());
 
         await fs.writeFile(this.FULL_PATH, data);
+    }
+
+    async copy(dir = '') {
+        const currentDate = new Date();
+
+        const date = format(currentDate, 'yyyy-MM-dd');
+
+        const newFileLocation =
+            dir === ''
+                ? CONFIG_DIR + '/backups/' + date + '.json'
+                : pathContainsFilename(dir, '.json')
+                ? dir
+                : dir + '/' + date + '.json';
+
+        if (!(await this.backupExists())) {
+            await fs.mkdir(CONFIG_DIR + '/backups');
+        }
+
+        await fs.copyFile(this.FULL_PATH, newFileLocation);
     }
 
     generateFileStructure(): FileStructure {

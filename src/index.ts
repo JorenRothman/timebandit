@@ -10,6 +10,7 @@ import { CONFIG_DIR } from '@/constants/paths';
 import { VERSION } from '@/constants/package-info';
 import reset from '@/commands/reset';
 import { DB } from './constants/database';
+import backup from './commands/backup';
 
 DB.create();
 
@@ -47,6 +48,12 @@ program
     .description('Exports all time entries to a csv file')
     .argument('<path>', 'Path to export to')
     .action(exportEntries);
+
+program
+    .command('backup')
+    .description('Backs up the database')
+    .argument('[path]', 'Path to backup to')
+    .action(backup);
 
 program.command('reset').description('Resets the database').action(reset);
 

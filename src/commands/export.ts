@@ -1,8 +1,7 @@
 import fs from 'fs';
-import path from 'path';
 import os from 'os';
-import { format } from 'date-fns';
 import { DB } from '@/constants/database';
+import { getFilePath } from '@/utils/file';
 
 async function exportEntries(pathName: string) {
     const { items } = await DB.read();
@@ -27,26 +26,6 @@ async function exportEntries(pathName: string) {
     fs.writeFileSync(filePath, csvWithHeaders, 'utf8');
 
     console.log(`Exported entries to ${filePath}`);
-}
-
-function pathContainsFilename(pathName: string) {
-    return pathName.endsWith('.csv');
-}
-
-function getFilePath(pathName: string) {
-    if (pathContainsFilename(pathName)) {
-        return pathName;
-    }
-
-    return path.resolve(pathName, getGeneratedFileName());
-}
-
-function getGeneratedFileName() {
-    const date = new Date();
-
-    const fileName = format(date, 'yyyyMMdd');
-
-    return `${fileName}.csv`;
 }
 
 export default exportEntries;
