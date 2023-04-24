@@ -1,36 +1,27 @@
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { Entry } from '@/types/database';
 import { format } from 'date-fns';
 import { DB } from '@/constants/database';
 
-function exportEntries(pathName: string) {
-    DB.serialize(() => {
-        DB.all('SELECT * FROM times', (err, rows: Entry[]) => {
-            if (err) {
-                console.error(err);
-                process.exit(1);
-            }
+async function exportEntries(pathName: string) {
+    const { items } = await DB.read();
 
-            const headers =
-                'id,project,description,start_time,end_time,duration';
+    const headers = 'id,project,description,start_time,end_time,duration';
 
-            const csv = rows
-                .map((row) => {
-                    return `${row.id},${row.project},${row.description},${row.start_time},${row.end_time},${row.duration}`;
-                })
-                .join(os.EOL);
+    const csv = items
+        .map((item) => {
+            return `${item.id},${item.project},${item.description},${item.startDateTime},${item.endDateTime},${item.duration}`;
+        })
+        .join(os.EOL);
 
-            const csvWithHeaders = `${headers}${os.EOL}${csv}`;
+    const csvWithHeaders = `${headers}${os.EOL}${csv}`;
 
-            const filePath = getFilePath(pathName);
+    const filePath = getFilePath(pathName);
 
-            fs.writeFileSync(filePath, csvWithHeaders, 'utf8');
+    fs.writeFileSync(filePath, csvWithHeaders, 'utf8');
 
-            console.log(`Exported entries to ${filePath}`);
-        });
-    });
+    console.log(`Exported entries to ${filePath}`);
 }
 
 function pathContainsFilename(pathName: string) {

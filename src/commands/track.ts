@@ -1,6 +1,7 @@
 import { differenceInMilliseconds, format } from 'date-fns';
 import { keypress } from '@/utils/interaction';
 import { DB } from '@/constants/database';
+import { Item } from '@/types/database';
 
 async function trackTime(project: string, description: string) {
     console.log(
@@ -28,33 +29,20 @@ async function trackTime(project: string, description: string) {
         'HH:mm:ss'
     );
 
-    DB.serialize(() => {
-        DB.prepare(
-            `CREATE TABLE IF NOT EXISTS times (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    project TEXT NOT NULL,
-                    description TEXT NOT NULL,
-                    start_time TEXT NOT NULL,
-                    end_time TEXT NOT NULL,
-                    duration INTEGER NOT NULL
-                )`
-        ).run();
+    const item: Item = {
+        id: String(Date.now()),
+        project,
+        description,
+        startDateTime: startTime.toISOString(),
+        endDateTime: endTime.toISOString(),
+        duration: formattedTime,
+    };
 
-        DB.prepare('INSERT INTO times VALUES (?, ?, ?, ?, ?, ?)')
-            .run(
-                null,
-                project,
-                description,
-                startTime.toISOString(),
-                endTime.toISOString(),
-                formattedTime
-            )
-            .finalize(function () {
-                process.exit();
-            });
-    });
+    await DB.update(item);
 
     console.log(`Tracked: ${formattedTime} For ${project}`);
+
+    process.exit(0);
 }
 
 export default trackTime;
