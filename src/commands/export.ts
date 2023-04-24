@@ -7,6 +7,11 @@ import { DB } from '@/constants/database';
 async function exportEntries(pathName: string) {
     const { items } = await DB.read();
 
+    if (items.length === 0) {
+        console.log('No entries found.');
+        return;
+    }
+
     const headers = 'id,project,description,start_time,end_time,duration';
 
     const csv = items
