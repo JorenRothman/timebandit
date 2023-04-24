@@ -1,6 +1,6 @@
 {
     "name": "@jorenrothman/timebandit",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Stealing your time back, one command at a time!",
     "main": "dist/index.js",
     "bin": {

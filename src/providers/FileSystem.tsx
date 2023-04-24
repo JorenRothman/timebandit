@@ -46,9 +46,11 @@ class FileSystem {
         return JSON.parse(data);
     }
 
-    async delete() {
+    async reset() {
         // delete the file from the root of the CONFIG DIR
-        await fs.unlink(this.FULL_PATH);
+        const data = JSON.stringify(this.generateFileStructure());
+
+        await fs.writeFile(this.FULL_PATH, data);
     }
 
     generateFileStructure(): FileStructure {
