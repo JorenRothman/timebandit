@@ -31,15 +31,15 @@ class FileSystem {
         }
     }
 
-    async create() {
+    async create(data: FileStructure | null = null) {
         // create a new file in the root of the CONFIG DIR if it doesn't exist
         if (await this.exists()) {
             return;
         }
 
-        const data = JSON.stringify(this.generateFileStructure());
+        const json = JSON.stringify(data ? data : this.generateFileStructure());
 
-        await fs.writeFile(this.FULL_PATH, data);
+        await fs.writeFile(this.FULL_PATH, json);
     }
 
     async update(data: Item) {
@@ -51,9 +51,13 @@ class FileSystem {
         await fs.writeFile(this.FULL_PATH, JSON.stringify(currentData));
     }
 
-    async read(): Promise<FileStructure> {
+    async read(path: string = ''): Promise<FileStructure> {
         // Read the file from the root of the CONFIG DIR
-        const data = await fs.readFile(this.FULL_PATH, 'utf8');
+        const data =
+            path === ''
+                ? await fs.readFile(this.FULL_PATH, 'utf8')
+                : await fs.readFile(path, 'utf8');
+
         return JSON.parse(data);
     }
 

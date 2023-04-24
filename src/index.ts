@@ -11,6 +11,7 @@ import { VERSION } from '@/constants/package-info';
 import reset from '@/commands/reset';
 import { DB } from './constants/database';
 import backup from './commands/backup';
+import importBackup from './commands/import';
 
 DB.create();
 
@@ -54,6 +55,12 @@ program
     .description('Backs up the database')
     .argument('[path]', 'Path to backup to')
     .action(backup);
+
+program
+    .command('import')
+    .description('Imports a backup')
+    .argument('<path>', 'Path to import from')
+    .action(importBackup);
 
 program.command('reset').description('Resets the database').action(reset);
 
