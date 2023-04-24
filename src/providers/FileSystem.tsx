@@ -28,8 +28,6 @@ class FileSystem {
 
         const data = JSON.stringify(this.generateFileStructure());
 
-        console.log(data);
-
         await fs.writeFile(this.FULL_PATH, data);
     }
 
