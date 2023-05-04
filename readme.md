@@ -41,7 +41,7 @@ or if you want to specify a filename, you would type the following:
 timebandit export ~/Downloads/my-export.csv
 ```
 
-### `timebandit reset` 
+### `timebandit reset` or `timebandit clear`
 
 This command wipes the internal database, to wipe the internal database, you would type the following:
 

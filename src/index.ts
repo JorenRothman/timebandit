@@ -62,6 +62,10 @@ program
     .argument('<path>', 'Path to import from')
     .action(importBackup);
 
-program.command('reset').description('Resets the database').action(reset);
+program
+    .command('reset')
+    .alias('clear')
+    .description('Resets the database')
+    .action(reset);
 
 program.parse();
